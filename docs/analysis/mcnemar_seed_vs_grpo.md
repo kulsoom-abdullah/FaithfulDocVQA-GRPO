@@ -22,7 +22,10 @@ Both GRPO runs were initialized from the seed adapter above (`grpo_run_config.js
 `data/manufactured_test_abstains.jsonl` — 250 rows, all `target_is_abstain=True`, `gold_localized=False`.
 
 - **Primary: clean subset n=236** (`exclusion_reason` is None).
-- Secondary: full file n=250; document-disjoint n=205 (clean rows excluding the 13 doc_ids shared with the SFT checkpoint-selection test set: 1165, 4202, 5324, 6275, 7010, 9305, 10622, 12709, 13097, 13650, 14685, 14723, 14757).
+- Secondary: full file n=250; historical n=205 subset (clean rows excluding the 13 doc_ids shared with the 77 natural OCR-miss test examples: 1165, 4202, 5324, 6275, 7010, 9305, 10622, 12709, 13097, 13650, 14685, 14723, 14757).
+
+The "disjoint 205" labels below refer only to documents represented among those
+77 OCR-miss examples, not to the entire original test set.
 
 Frozen status, stated precisely: this set had been scored once before for the **seed** (the `verify_manufactured.py` recompute; the 0.288 clean-subset headline is recorded in `docs/findings/survivor_audit.md`); it had **never** been opened for any GRPO checkpoint before this run. The copy on the `faithfuldocvqa-data` volume is the June-30 pre-audit build: identical 250 record_ids and identical prompt-relevant fields (question, ocr_menu, image_path, doc_id); the committed file only adds the audit-overlay fields (`exclusion_reason`, `gold_label_defect`, `survivor_pending`; audit recorded 2026-07-02). Verified field-by-field before generating.
 
@@ -74,7 +77,7 @@ Note: on the clean/full subsets the uncorrected χ² (p=0.034) and the exact tes
 
 ## Consistency across subsets
 
-The seed→run2 paired effect is consistent in direction and similar in magnitude on all three cuts (b/n = 0.576, 0.552, 0.595; c = 0 in all three), including the document-disjoint subset, so it is not carried by the 13 documents shared with the SFT checkpoint-selection test set or by the 14 excluded rows. The control contrast (seed→run1) is likewise consistent across cuts: small, net-negative (7 breaks vs 1 fix on clean), not significant by the exact test.
+The seed→run2 paired effect is consistent in direction and similar in magnitude on all three cuts (b/n = 0.576, 0.552, 0.595; c = 0 in all three), including the historical 205-example subset, so it is not carried by the 13 documents shared with the 77 natural OCR-miss test examples or by the 14 excluded rows. The control contrast (seed→run1) is likewise consistent across cuts: small, net-negative (7 breaks vs 1 fix on clean), not significant by the exact test.
 
 ## What this establishes — and what it does not
 
@@ -91,3 +94,7 @@ false-ground it), so seed→run2 remains **b=136 / c=0**, exact p ≈ 2.3e-41; o
 denominators shift — seed 68/235 = 0.289, run1 62/235 = 0.264, run2 204/235 =
 0.868. The per-record file's `in_clean_236` flag reflects the pre-adjudication
 overlay (recorded 2026-08-01) and is intentionally left as written.
+
+Applying the final exclusions to the historical 205-example subset also removes
+`51687_mfab`, leaving 204 cases with 122 improvements and zero regressions for
+seed→run2. The dated tables above retain their historical populations.

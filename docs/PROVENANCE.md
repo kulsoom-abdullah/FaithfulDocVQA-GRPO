@@ -111,8 +111,10 @@ new ones on these 235 manufactured examples. The
 records the review and the unchanged comparison.
 
 Run-1 corrected one refusal error and introduced seven. The earlier analysis also
-checked 205 examples from documents absent from the test set previously used to
-inspect SFT checkpoints; the run-2 improvement remained similar. Run-1 and run-2
+checked a historical 205-example subset that excluded documents represented among
+the 77 natural OCR-miss test examples, not all documents in the original test set.
+Applying the final exclusions leaves 204 cases, with 122 improvements and zero
+regressions for run-2. Run-1 and run-2
 differed in their refusal rewards and how often they were evaluated during training.
 Each training setting was run once; the exact historical settings are not distributed
 in this repository.
