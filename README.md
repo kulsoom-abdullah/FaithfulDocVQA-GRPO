@@ -86,12 +86,7 @@ examples labeled as lacking OCR support are excluded. Answer correctness is scor
 separately and does not determine inclusion, so read F1 alongside its eligible count
 and incorrect refusal.
 
-Further SFT recovered much of run-2's refusal improvement. Matched-pool SFT reached
-195/235 correct refusals on manufactured examples and 76/77 on natural OCR misses,
-with 83/679 incorrect refusals versus run-2's 120/679. Balanced SFT reached 212/235
-manufactured correct refusals with 78/679 incorrect refusals. Later GRPO increased
-manufactured correct refusal to 217/235 but also increased incorrect refusal relative
-to balanced SFT. GRPO changed the trade-off; no model variant was best across all populations.
+GRPO with refusal-specific rewards (run-2) increased correct refusals on clean manufactured test questions from 68/235 to 204/235, while incorrect refusals on answerable questions rose from 26/679 to 120/679. Continuing SFT from the same checkpoint on the same training pool reached 195/235 correct refusals with 83/679 incorrect refusals. Balanced SFT, trained with clean manufactured refusal examples, reached 212/235 with 78/679. GRPO continued from that starting point reached 217/235 with 91–99/679. No model variant was best across all populations.
 
 | System / checkpoint | Training summary | Correct refusal: clean manufactured (n=235) | Correct refusal: natural OCR misses (n=77) | Incorrect refusal: answerable (n=679) | Conditional citation-label F1 (eligible / 679) |
 |---|---|---:|---:|---:|---:|
@@ -185,6 +180,20 @@ to check the released artifacts.
 
 Do not rebuild the dataset during routine setup: the builder can overwrite the saved
 dataset and depends on external data and OCR versions.
+
+## Repository guide
+
+| Location | Contents |
+|---|---|
+| `notebooks/` | Walkthrough with saved results and plots |
+| `artifacts/public/` | Released evaluation records, summaries, and provenance |
+| `scripts/` | Training, scoring, plotting, and public-artifact validation |
+| `grpo/` | GRPO training and reward implementation |
+| `phase0/` | Original OCR extraction, answer matching, citation-reward utilities, and legacy audits |
+| `docs/` | Experiment analyses, training configurations, and illustrations |
+| `tests/` | Code and artifact checks; see above for the public-compatible subset |
+| `data/` | Selected configuration and historical records; full datasets are excluded |
+| Root `modal_*.py` and `launch_pod.sh` | Cloud GPU launchers for training and generation |
 
 ## Suggested reading
 
