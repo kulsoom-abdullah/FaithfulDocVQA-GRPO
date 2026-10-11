@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+
+# Weights & Biases local run cache
+wandb/
+
+# Virtual environment
+.venv/
+
+# Secrets — never commit
+.env
+
+# Generated pipeline outputs (large images, JSONL logs, OCR dumps)
+phase0/outputs/
+augraphy_cache/
+
+# Master dataset build — materialized images (~700MB) and build logs.
+# Reproducible from scripts/build_master_dataset.py; master.jsonl/manifest stay tracked.
+data/images/
+data/*.log
+
+# Derived 3-field dataset (~62MB) — regenerable from master.jsonl via scripts/build_3field.py
+data/master_3field.jsonl
+
+# SFT adapters / Trainer outputs (per scope: adapters live here, gitignored)
+# Keep checkpoint contents local except the two reviewed run-4 configurations.
+/data/checkpoints/*
+!/data/checkpoints/grpo_run4a_seed42/
+!/data/checkpoints/grpo_run4b_seed42/
+/data/checkpoints/grpo_run4a_seed42/*
+/data/checkpoints/grpo_run4b_seed42/*
+!/data/checkpoints/grpo_run4a_seed42/grpo_run_config.json
+!/data/checkpoints/grpo_run4b_seed42/grpo_run_config.json
+
+# Draft docs (not ready to publish)
+phase0_writeup*.md
+phase0_writeup*.html
+phase0_5_prompt.md
+phase0_newproject.md
+
+# OS
+.DS_Store
+
+# Jupyter's local autosave copies
+.ipynb_checkpoints/
+
+# launch_pod.sh remembers the last pod IP/port here (ephemeral, do not commit)
+.last_pod
+data/grpo_runs_mirror/
+data/modal_pull/
+scratch_*.py
+# local-only agent instructions (auto-loaded by Claude Code, never shipped)
+CLAUDE.local.md
+# regenerable script outputs (survivor_cases.py / verify_manufactured.py / count_multi_occurrence.py)
+survivor_cases.txt
+verify_check3_cases.txt
+count_multi_occurrence_examples.txt
+# regenerable HTML views of .md sources (behavior_axes_reference is tracked; 0705_call_reference is local-only)
+docs/0705_call_reference.html
+docs/behavior_axes_reference.html
+# regenerable one-off HTML exports (no reader value beyond their source data)
+docs/findings/sft_a_vs_b_honest_abstain.html
+docs/FaithfulDocVQA Scoring Table.html
+diagram.md
+diagram.html
+# scaffolding: one-off mentor-review page generator (phase0 workbench)
+phase0/build_bottom6_html.py
+# private working docs — session handoffs / status logs / field notes, kept local-only
+docs/GRPO_stage3_handoff.md
+docs/June20_status.md
+docs/review_bundle.md
+docs/review_bundle_v2.md
+docs/notes/pipeline_field_notes.md
+sftA_overnight_log.md
+handoff_classify.md
+# untracked at the pre-README usage gate (2026-08-09): unrunnable-from-tree or
+# uncited interim analyses; kept local-only
+phase0/diag_img2_caseC.py
+scripts/confound_and_floor.py
+scripts/count_multi_occurrence.py
+docs/checkpoint_selection.md
+# undecided strays (user decision pending) — kept out of every add -A sweep
+overview.pdf
+docs/diagrams/reward_flow.html
+docs/diagrams/reward_flow.md
+docs/diagrams/reward_flow.png
+
+# local-only pattern list for scripts/grep_suite.sh (instance identifiers)
+.grep_suite_local

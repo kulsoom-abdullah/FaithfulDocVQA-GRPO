@@ -1,0 +1,63 @@
+{
+  "dataset": "FaithfulDocVQA v1 master",
+  "built_at": "2026-06-16T10:28:28",
+  "build_seconds": 953.4,
+  "seed": 42,
+  "source_dataset": "lmms-lab/DocVQA",
+  "source_config": "DocVQA",
+  "source_split": "validation",
+  "excluded_doc_types": [
+    "Image/Photo",
+    "handwritten"
+  ],
+  "clean_images_only": true,
+  "augraphy_or_masking_applied": false,
+  "build": "full-eligible 3-way (70/15/15 by docId, stratified by doc_type)",
+  "total_records": 4932,
+  "answerable_records": 4496,
+  "abstain_records": 436,
+  "abstain_pct": 8.84,
+  "split_records": {
+    "train": 3423,
+    "validation": 753,
+    "test": 756
+  },
+  "split_docs": {
+    "train": 866,
+    "validation": 184,
+    "test": 184
+  },
+  "split_abstains": {
+    "train": 313,
+    "validation": 46,
+    "test": 77
+  },
+  "val_test_shared_for_A_and_B": true,
+  "train_mode_filter": "A=gold_localized only; B=all (applied to TRAIN only)",
+  "image_dir": "data/images",
+  "image_count": 1234,
+  "image_total_bytes": 829356201,
+  "image_total_mb": 829.4,
+  "first_gold_localized": 4469,
+  "all_variant_localized": 4496,
+  "variant_recovery_gap": 27,
+  "imported_functions": [
+    "phase0.pipeline.extract_ocr_tokens",
+    "phase0.phase05.find_bbox",
+    "phase0.phase05.find_bbox_lenient",
+    "phase0.score_phase0_with_f1.localize_gold"
+  ],
+  "ocr": "pytesseract.image_to_data via phase0.pipeline.extract_ocr_tokens (Tesseract 5.5.1)",
+  "localizer": "phase0.phase05.find_bbox(0.85) -> find_bbox_lenient (cascade 0.85/0.7/0.6/0.5 + numeric fallback), evaluated over ALL gold variants; localize_gold used for first-gold metric",
+  "assertions": {
+    "no_doc_in_multiple_splits": true,
+    "abstain_empty_cited_and_ocr_miss": true,
+    "answerable_cited_nonempty_subset_of_menu": true,
+    "gold_answers_nonempty_list": true,
+    "ocr_menu_hash_present": true,
+    "abstain_iff_not_localized": true,
+    "target_answer_consistent": true
+  },
+  "all_assertions_pass": true,
+  "scope_note": "Build predates docs/faithfuldocvqa_scope.md landing in the tree; built from the scope's inline citations (§1 exclude handwritten+Image/Photo, §6 imperfect-but-frozen), the PROJECT_STATUS localizer check (n=500), and REWARD_DESIGN.md:69-71."
+}

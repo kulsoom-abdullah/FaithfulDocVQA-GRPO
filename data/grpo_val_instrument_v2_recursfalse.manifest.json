@@ -1,0 +1,43 @@
+{
+  "name": "grpo_val_instrument_v2_recursfalse",
+  "built": "2026-08-12",
+  "purpose": "checkpoint-selection instrument for run-4 arms 4a and 4b (plan \u00a7g)",
+  "rule": "same construction as grpo/train_grpo.build_val_instrument (seed+1, same answerable half); abstain half drawn only from answer_recurs_in_menu == False",
+  "seed": 43,
+  "counts": {
+    "total": 112,
+    "abstain": 64,
+    "answerable": 48
+  },
+  "abstain_strata": {
+    "multi_unique": 40,
+    "single_unique": 24
+  },
+  "decoy_rows": 0,
+  "sources": {
+    "manufactured_val_abstains.jsonl": {
+      "n": 466,
+      "n_recurs_false": 379,
+      "sha256": "322ffba0f09f6f882375e95326a961a8b8be63b1f951ed5b362342a320e6ca9e"
+    },
+    "master.jsonl": {
+      "n_validation_citable": 707,
+      "sha256": "276cb8d9ee4095332f47b08cf7f211a215e369955f2d8af07cc98daa12ba617c"
+    }
+  },
+  "original_instrument_for_comparison": {
+    "note": "runs 1-2; a runtime construction in build_val_instrument, never persisted \u2014 replayed here at the same seed",
+    "counts": {
+      "abstain": 64,
+      "answerable": 48
+    },
+    "decoy_rows": 9,
+    "caveat_it_carried": "honest_abstain was a LOWER BOUND (label_audit.md \u00a75)"
+  },
+  "delta": {
+    "decoy_rows_removed": 9,
+    "abstain_denominator": "64 -> 64 (unchanged)",
+    "urn_size": "466 -> 379"
+  },
+  "instrument_file_sha256": "18d28e6ec912a8cdfb4aa28f103e715f15fba3c710a3527b0c1d6890e2c0041b"
+}

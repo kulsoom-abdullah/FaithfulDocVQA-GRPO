@@ -1,0 +1,50 @@
+{
+  "name": "grpo_pool_v2_recursfalse",
+  "built": "2026-08-12",
+  "purpose": "GRPO training pool for run 4, restricted to construction-valid abstains",
+  "rule": "manufactured abstains with answer_recurs_in_menu == False only (the same restriction run-3's SFT mix used); answerable half unchanged (load_split('train','A'))",
+  "seed": 42,
+  "abstain_fraction": 0.4,
+  "abstain_fraction_target": 0.4,
+  "counts": {
+    "total": 4410,
+    "abstain": 1764,
+    "answerable": 2646
+  },
+  "abstain_strata": {
+    "multi_unique": 868,
+    "single_unique": 896
+  },
+  "sources": {
+    "manufactured_train_abstains.jsonl": {
+      "n": 2175,
+      "sha256": "e3a11b19e7334d7bc864c8ad414f40282117261ca768faa350945168cb07ad5a"
+    },
+    "master.jsonl": {
+      "n_train_A": 3110,
+      "sha256": "276cb8d9ee4095332f47b08cf7f211a215e369955f2d8af07cc98daa12ba617c"
+    }
+  },
+  "original_pool_for_comparison": {
+    "note": "runs 1-2; a runtime construction in grpo/train_grpo.build_train_pool, never persisted \u2014 replayed here at the same seed",
+    "counts": {
+      "total": 5000,
+      "abstain": 2000,
+      "answerable": 3000
+    },
+    "abstain_recurs_true": 377,
+    "abstain_recurs_false": 1623,
+    "abstain_strata": {
+      "multi_decoy": 162,
+      "multi_unique": 808,
+      "single_decoy": 215,
+      "single_unique": 815
+    }
+  },
+  "delta": {
+    "decoy_rows_removed_from_abstain_half": 377,
+    "abstain_half_size": "2000 -> 1764",
+    "pool_size": "5000 -> 4410"
+  },
+  "pool_file_sha256": "ccc7be7b20a07e9253b9a08364e7f67c1ab9b9b49c24bca87a17c6635eee7cb3"
+}
